@@ -1,0 +1,16 @@
+.contacts_wrapper {
+  display: grid;
+  justify-items: center;
+}
+
+.contact_items {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.button {
+  margin-left: 8px;
+  background-color: rgba(247, 13, 13, 0.705);
+  color: rgb(255, 240, 240);
+}
