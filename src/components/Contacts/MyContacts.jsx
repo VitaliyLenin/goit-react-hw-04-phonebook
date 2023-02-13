@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import MyContactForm from 'components/MyContactForm/MyContactForm';
 import MyContactList from 'components/ContactList/ContactList';
@@ -8,8 +8,15 @@ import MyContactsFilter from 'components/MyContactsFilter/MyContactsFilter';
 import css from './MyContacts.module.css';
 
 const MyContacts = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(() => {
+    const contacts = JSON.parse(localStorage.getItem('my-contacts'));
+    return contacts ? contacts : [];
+  });
   const [filter, setFilter] = useState('');
+
+  useEffect(() => {
+    localStorage.setItem('my-contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   const isDublicate = name => {
     const normalizedName = name.toLowerCase();
